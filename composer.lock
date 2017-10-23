@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ebfb5b46e5ce7540e180a3b90a68eb26",
+    "content-hash": "142fff6319f10cb687d1fa21ec58bb78",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -3907,6 +3907,44 @@
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "time": "2017-04-07T12:08:54+00:00"
+        },
+        {
+            "name": "thomasweinert/phpunit-xpath-assertions",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ThomasWeinert/phpunit-xpath-assertions.git",
+                "reference": "101cf7eb52ea40cc5fe936a94fa07a9818f9d576"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ThomasWeinert/phpunit-xpath-assertions/zipball/101cf7eb52ea40cc5fe936a94fa07a9818f9d576",
+                "reference": "101cf7eb52ea40cc5fe936a94fa07a9818f9d576",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1",
+                "phpunit/phpunit": "^6.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Weinert",
+                    "email": "thomas@weinert.info",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Xpath assertions and constraints for PHPUnit",
+            "time": "2017-10-15T13:46:44+00:00"
         },
         {
             "name": "webmozart/assert",
