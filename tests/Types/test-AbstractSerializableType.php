@@ -10,7 +10,7 @@ use Vendi\PaymentGateways\JetPay\Xml\Types\BillingAddress;
  */
 class test_AbstractSerializableType extends jetpay_test_base
 {
-     use XpathAssertions;
+    use XpathAssertions;
 
     /**
      * @covers \Vendi\PaymentGateways\JetPay\Xml\start::__toXml
