@@ -1,13 +1,12 @@
 <?php declare(strict_types=1);
 namespace Vendi\PaymentGateways\JetPay\Xml\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Vendi\PaymentGateways\JetPay\Xml\start;
 
 /**
  * @coversNothing
  */
-class test_start extends TestCase
+class test_start extends jetpay_test_base
 {
     /**
      * @covers \Vendi\PaymentGateways\JetPay\Xml\start::__construct
