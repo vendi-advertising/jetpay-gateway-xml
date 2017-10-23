@@ -1,9 +1,12 @@
 <?php declare(strict_types=1);
 namespace Vendi\PaymentGateways\JetPay\Xml\Types;
 
+/**
+ * @serializeTag shipping
+ */
 final class ShippingAddress extends AbstractAddress
 {
-    private $_shipping_id; //  Specify billing id. Required for 'update-customer' if multiple billing-ids exist, optional for 'add-billing'.
+    private $_shipping_id; //  Specify shipping id. Required for 'update-customer' if multiple shipping-ids exist, optional for 'add-shipping'.
 
     /**
      * @serializeTag shipping_id
