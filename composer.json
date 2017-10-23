@@ -26,5 +26,8 @@
     },
     "config": {
         "optimize-autoloader": true
+    },
+    "autoload": {
+        "psr-4": {"Vendi\\PaymentGateways\\JetPay\\Xml\\": "src/"}
     }
 }
