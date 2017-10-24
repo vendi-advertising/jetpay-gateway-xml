@@ -12,21 +12,23 @@ abstract class AbstractSerializableType
      * @return array|null   if parsing succeeds, returns a tuple with keys
      *                              name and value, otherwise null
      */
-    final public function _get_serializeTag_name_and_value_tuple($comment) : ?array
+    final public static function _get_serializeTag_name_and_value_tuple($comment) : ?array
     {
         //No PHP comment
         if (!$comment) {
             return null;
         }
 
-        //Normalize returns
-        $comment = preg_replace('~\R~u', "\r\n", $comment);
+        //Normalize returns, trim extra whitespace
+        $comment = trim(preg_replace('/[\n\r]/', "\n", $comment));
 
-        //Grab each line and make sure we have at least one
-        $lines = explode("\r\n", $comment);
-        if (!$lines || 0===count($lines)) {
+        //Basically an empty PHP comment
+        if (!$comment) {
             return null;
         }
+
+        //Grab each line and make sure we have at least one
+        $lines = array_filter(explode("\n", $comment));
 
         foreach ($lines as $line) {
             //Trim all whitespace, asteriks and forward slashes from start and end
@@ -41,15 +43,6 @@ abstract class AbstractSerializableType
             //Look for something like:
             //@blah something
             if (!preg_match('/^\@(?P<name>[a-zA-Z]+)\s+(?P<value>[a-zA-Z0-9\-_]+)$/', $line, $matches)) {
-                continue;
-            }
-
-            //Make sure our named-keys actually exist in our match array
-            if (!array_key_exists('name', $matches)) {
-                continue;
-            }
-
-            if (!array_key_exists('value', $matches)) {
                 continue;
             }
 
@@ -70,20 +63,13 @@ abstract class AbstractSerializableType
         return null;
     }
 
-    /**
-     * Return the current object described as XML.
-     *
-     * @throws \Exception if a serializeTag cannot be found on the current instance
-     *
-     * @return string
-     */
-    final public function __toXml()
+    final public static function _get_xml_structure_for_object(AbstractSerializableType $obj) :?string
     {
         //Relfect upon the currant instance
-        $reflectionClass = new \ReflectionClass($this);
+        $reflectionClass = new \ReflectionClass($obj);
 
         //Get the root tag
-        $root_tag = $this->_get_serializeTag_name_and_value_tuple($reflectionClass->getDocComment());
+        $root_tag = self::_get_serializeTag_name_and_value_tuple($reflectionClass->getDocComment());
         if (!$root_tag) {
             throw new \Exception('Could not find a serializeTag on the supplied object');
         }
@@ -106,7 +92,7 @@ abstract class AbstractSerializableType
         foreach ($methods as $method) {
 
             //For the current method, see if it has a serializeTag attribute
-            $child_tag = $this->_get_serializeTag_name_and_value_tuple($method->getDocComment());
+            $child_tag = self::_get_serializeTag_name_and_value_tuple($method->getDocComment());
             if (! $child_tag) {
                 //A missing tag is non-fatal, we can just skip those
                 continue;
@@ -116,7 +102,7 @@ abstract class AbstractSerializableType
             $child_node = $xmlRequest->createElement($child_tag[ 'value' ]);
 
             //Invoke the method using this instance to get its value
-            $child_node_value = $method->invoke($this);
+            $child_node_value = $method->invoke($obj);
 
             //TODO: Right now we're creating empty (self-closing) nodes for null-like
             //values. We'll need to see if the gatewate supports this or if it wants
@@ -136,5 +122,17 @@ abstract class AbstractSerializableType
         $xmlString = $xmlRequest->saveXML();
 
         return $xmlString;
+    }
+
+    /**
+     * Return the current object described as XML.
+     *
+     * @throws \Exception if a serializeTag cannot be found on the current instance
+     *
+     * @return string
+     */
+    final public function __toXml()
+    {
+        return self::_get_xml_structure_for_object($this);
     }
 }

@@ -2,3 +2,4 @@
 
 require_once dirname(__DIR__) . '/includes/autoload.php';
 require_once __DIR__ . '/includes/jetpay_test_base.php';
+require_once __DIR__ . '/includes/mock_for_AbstractSerializableType.php';
