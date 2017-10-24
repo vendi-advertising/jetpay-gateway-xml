@@ -3,8 +3,8 @@ namespace Vendi\PaymentGateways\JetPay\Xml\Tests\Types;
 
 use PHPUnit\Xpath\Assert as XpathAssertions;
 use Vendi\PaymentGateways\JetPay\Xml\Tests\jetpay_test_base;
-use Vendi\PaymentGateways\JetPay\Xml\Types\AbstractSerializableType;
 use Vendi\PaymentGateways\JetPay\Xml\Tests\Mocks\mock_for_AbstractSerializableType;
+use Vendi\PaymentGateways\JetPay\Xml\Types\AbstractSerializableType;
 
 /**
  * @group AbstractSerializableType
@@ -23,9 +23,9 @@ class test_AbstractSerializableType extends jetpay_test_base
      */
     public function test__get_serializeTag_name_and_value_tuple__null()
     {
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple(false) );
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple(null) );
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple('') );
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple(false));
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple(null));
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple(''));
     }
 
     /**
@@ -33,10 +33,10 @@ class test_AbstractSerializableType extends jetpay_test_base
      */
     public function test__get_serializeTag_name_and_value_tuple__empty_lines()
     {
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple("\n") );
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple("\r\n") );
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple("\r") );
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple(" ") );
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple("\n"));
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple("\r\n"));
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple("\r"));
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple(' '));
     }
 
     /**
@@ -49,7 +49,7 @@ class test_AbstractSerializableType extends jetpay_test_base
          * I am cool!
          */
         ';
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple($test) );
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple($test));
     }
 
     /**
@@ -62,7 +62,7 @@ class test_AbstractSerializableType extends jetpay_test_base
          * @return_string
          */
         ';
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple($test) );
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple($test));
     }
 
     /**
@@ -75,7 +75,7 @@ class test_AbstractSerializableType extends jetpay_test_base
          * @return string
          */
         ';
-        $this->assertNull( AbstractSerializableType::_get_serializeTag_name_and_value_tuple($test) );
+        $this->assertNull(AbstractSerializableType::_get_serializeTag_name_and_value_tuple($test));
     }
 
     /**
@@ -88,7 +88,7 @@ class test_AbstractSerializableType extends jetpay_test_base
          * @serializeTag cheese
          */
         ';
-        $this->assertSame( [ 'name'=>'serializeTag', 'value'=>'cheese' ], AbstractSerializableType::_get_serializeTag_name_and_value_tuple($test) );
+        $this->assertSame([ 'name'=>'serializeTag', 'value'=>'cheese' ], AbstractSerializableType::_get_serializeTag_name_and_value_tuple($test));
     }
 
     /**
@@ -99,9 +99,9 @@ class test_AbstractSerializableType extends jetpay_test_base
     {
         $obj = $this->_get_mock();
         $result = $obj->__toXml();
-        $result = preg_replace( '/[\n\r]/', '', trim(str_replace( '<?xml version="1.0" encoding="UTF-8"?>', '', $result) ));
-        $result = preg_replace( '/\>\s+\</', '><', $result);
-        $this->assertSame( '<mock><cheese>American</cheese></mock>', $result);
+        $result = preg_replace('/[\n\r]/', '', trim(str_replace('<?xml version="1.0" encoding="UTF-8"?>', '', $result)));
+        $result = preg_replace('/\>\s+\</', '><', $result);
+        $this->assertSame('<mock><cheese>American</cheese></mock>', $result);
     }
 
     /**
@@ -109,8 +109,9 @@ class test_AbstractSerializableType extends jetpay_test_base
      */
     public function test__get_xml_structure_for_object__no_root()
     {
-        $obj = new class() extends AbstractSerializableType{};
-        $this->setExpectedException( '\Exception' );
+        $obj = new class() extends AbstractSerializableType {
+        };
+        $this->setExpectedException('\Exception');
         $result = AbstractSerializableType::_get_xml_structure_for_object($obj);
     }
 }

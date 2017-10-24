@@ -1,7 +1,6 @@
 <?php declare(strict_types=1);
 namespace Vendi\PaymentGateways\JetPay\Xml\Types;
 
-/** @MappedSuperclass */
 abstract class AbstractAddress extends AbstractSerializableType
 {
     private $_first_name;   // Cardholder's first name.

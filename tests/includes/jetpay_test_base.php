@@ -60,16 +60,17 @@ class jetpay_test_base extends TestCase
      * @param string     $message
      * @param int|string $code
      */
-    public function setExpectedException( $exception, $message = '', $code = null ) {
-        if ( method_exists( 'PHPUnit_Framework_TestCase', 'setExpectedException' ) ) {
-            parent::setExpectedException( $exception, $message, $code );
+    public function setExpectedException($exception, $message = '', $code = null)
+    {
+        if (method_exists('PHPUnit_Framework_TestCase', 'setExpectedException')) {
+            parent::setExpectedException($exception, $message, $code);
         } else {
-            $this->expectException( $exception );
-            if ( '' !== $message ) {
-                $this->expectExceptionMessage( $message );
+            $this->expectException($exception);
+            if ('' !== $message) {
+                $this->expectExceptionMessage($message);
             }
-            if ( null !== $code ) {
-                $this->expectExceptionCode( $code );
+            if (null !== $code) {
+                $this->expectExceptionCode($code);
             }
         }
     }
