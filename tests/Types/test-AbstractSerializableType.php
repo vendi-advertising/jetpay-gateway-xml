@@ -93,11 +93,12 @@ class test_AbstractSerializableType extends jetpay_test_base
 
     /**
      * @covers \Vendi\PaymentGateways\JetPay\Xml\Types\AbstractSerializableType::_get_xml_structure_for_object
+     * @covers \Vendi\PaymentGateways\JetPay\Xml\Types\AbstractSerializableType::__toXml
      */
     public function test__get_xml_structure_for_object()
     {
         $obj = $this->_get_mock();
-        $result = AbstractSerializableType::_get_xml_structure_for_object($obj);
+        $result = $obj->__toXml();
         $result = preg_replace( '/[\n\r]/', '', trim(str_replace( '<?xml version="1.0" encoding="UTF-8"?>', '', $result) ));
         $result = preg_replace( '/\>\s+\</', '><', $result);
         $this->assertSame( '<mock><cheese>American</cheese></mock>', $result);
