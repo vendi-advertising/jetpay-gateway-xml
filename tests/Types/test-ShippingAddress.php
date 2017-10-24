@@ -16,6 +16,7 @@ class test_ShippingAddress extends jetpay_test_base
      * @dataProvider provider_for_test__xml_stuff
      * @param mixed $property_name
      * @param mixed $xml_tag_name
+     * @param mixed $root
      */
     public function test__xml_stuff($property_name, $xml_tag_name, $root)
     {
@@ -25,7 +26,7 @@ class test_ShippingAddress extends jetpay_test_base
         $obj = new ShippingAddress();
         $obj->$setter('CHEESE');
 
-        $this->assertSame( 'CHEESE', $obj->$getter() );
+        $this->assertSame('CHEESE', $obj->$getter());
 
         $document = new \DOMDocument();
         $document->loadXML($obj->__toXml());

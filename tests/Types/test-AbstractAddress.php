@@ -49,7 +49,7 @@ class test_AbstractAddress extends jetpay_test_base
         $obj = new BillingAddress();
         $obj->$setter('CHEESE');
 
-        $this->assertSame( 'CHEESE', $obj->$getter() );
+        $this->assertSame('CHEESE', $obj->$getter());
 
         $document = new \DOMDocument();
         $document->loadXML($obj->__toXml());
