@@ -1,7 +1,7 @@
 {
-    "name": "vendi-advertising/jetpay-gateway-xml",
+    "name": "vendi-advertising/jetpay-gateway-xml-types",
     "type": "library",
-    "description" : "JetPay Gateway XML",
+    "description" : "JetPay Gateway XML Types",
     "license": "MIT",
     "authors": [
         {
@@ -30,6 +30,6 @@
         "optimize-autoloader": true
     },
     "autoload": {
-        "psr-4": {"Vendi\\PaymentGateways\\JetPay\\Xml\\": "src/"}
+        "psr-4": {"Vendi\\PaymentGateways\\JetPay\\Xml\\Types": "src/"}
     }
 }
