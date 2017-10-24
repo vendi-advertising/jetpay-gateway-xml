@@ -53,6 +53,27 @@ class jetpay_test_base extends TestCase
         return '0.99';
     }
 
+    /**
+     * PHPUnit 6+ compatibility shim.
+     *
+     * @param mixed      $exception
+     * @param string     $message
+     * @param int|string $code
+     */
+    public function setExpectedException( $exception, $message = '', $code = null ) {
+        if ( method_exists( 'PHPUnit_Framework_TestCase', 'setExpectedException' ) ) {
+            parent::setExpectedException( $exception, $message, $code );
+        } else {
+            $this->expectException( $exception );
+            if ( '' !== $message ) {
+                $this->expectExceptionMessage( $message );
+            }
+            if ( null !== $code ) {
+                $this->expectExceptionCode( $code );
+            }
+        }
+    }
+
     /*
 Triggering Errors in Test Mode
 To cause a declined message, pass an amount less than 1.00.
