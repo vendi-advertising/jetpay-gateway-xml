@@ -4,6 +4,6 @@ namespace Vendi\PaymentGateways\JetPay\Xml\Types;
 /**
  * @serializeTag credit
  */
-final class SaleRequest extends AbstractRequest
+final class CreditRequest extends AbstractRequest
 {
 }

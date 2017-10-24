@@ -4,6 +4,6 @@ namespace Vendi\PaymentGateways\JetPay\Xml\Types;
 /**
  * @serializeTag offline
  */
-final class SaleRequest extends AbstractRequest
+final class OfflineRequest extends AbstractRequest
 {
 }
