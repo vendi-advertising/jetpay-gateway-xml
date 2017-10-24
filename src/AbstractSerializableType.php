@@ -77,9 +77,6 @@ abstract class AbstractSerializableType
         //Create our XML document
         $xmlRequest = new \DOMDocument('1.0', 'UTF-8');
 
-        //Format pretty for testing
-        $xmlRequest->formatOutput = true;
-
         //Create the root node using this instance's root tag
         $root = $xmlRequest->createElement($root_tag[ 'value' ]);
 
